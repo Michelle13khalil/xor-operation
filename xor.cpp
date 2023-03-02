@@ -2,21 +2,18 @@
 #include <string>
 using namespace std;
 
-int main()
-{
-    string key = "m";
-
-    string message = "127.198.192.22";
-
-    string binary_key = key;
-    string binary_message = message;
-
-    string ciphertext = "";
-    for (int i = 0; i < binary_message.length(); i++)
-    {
-        ciphertext += binary_message[i] ^ binary_key[i % binary_key.length()];
+string decrypt(string cipherText, char key) {
+    string plainText = "";
+    for (int i = 0; i < cipherText.size(); i++) {
+        plainText += cipherText[i] ^ key;
     }
+    return plainText;
+}
 
-    cout << ciphertext << endl;
+int main() {
+    string cipherText = "which we get";
+    char key = 'm';
+    string plainText = decrypt(cipherText, key);
+    cout << "Plain Text: " << plainText << endl;
     return 0;
 }
